@@ -2,7 +2,7 @@ import { useCurrentUser, useSignOut } from '@/hooks/useAuth';
 import { useRequests } from '@/hooks/useRequests';
 import { useUsers } from '@/hooks/useUsers';
 import type { RequestStatus } from '@/lib/types';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -94,7 +94,9 @@ export default function AdminOverview() {
             <View className="flex-row items-center justify-between mb-3">
               <Text className="text-white font-bold text-base">Recent Requests</Text>
               <TouchableOpacity onPress={() => router.push('/(admin)/requests' as any)}>
-                <Text className="text-green-400 text-xs font-semibold">View all →</Text>
+                <Text className="text-green-400 text-xs font-semibold">View all 
+                  <AntDesign name="arrow-right" />
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -127,6 +129,7 @@ export default function AdminOverview() {
               {[
                 { label: 'Manage Users', icon: 'people-outline', route: '/(admin)/users' },
                 { label: 'All Requests', icon: 'list-outline', route: '/(admin)/requests' },
+                { label: 'Create User', icon: 'person-add-outline', route: '/(admin)/create-user' },
               ].map((a) => (
                 <TouchableOpacity
                   key={a.label}
