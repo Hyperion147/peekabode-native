@@ -27,7 +27,7 @@ export default function AdminOverview() {
   const { profile } = useCurrentUser();
   const { signOut } = useSignOut();
   const { users, loading: usersLoading } = useUsers();
-  const { requests, loading: reqLoading, refresh } = useRequests();
+  const { requests, loading: reqLoading } = useRequests();
 
   const pending = requests.filter((r) => r.status === 'PENDING');
   const active = requests.filter((r) => r.status === 'ACTIVE');
@@ -73,7 +73,7 @@ export default function AdminOverview() {
           <View className="px-5 flex-row flex-wrap gap-3 mt-4 mb-6">
             {[
               { label: 'Total Users', value: users.length, icon: 'people', color: 'bg-blue-900/50', route: '/(admin)/users' },
-              { label: 'Total Requests', value: requests.length, icon: 'clipboard-list', color: 'bg-purple-900/50', route: '/(admin)/requests' },
+              { label: 'Total Requests', value: requests.length, icon: 'document-text', color: 'bg-purple-900/50', route: '/(admin)/requests' },
               { label: 'Pending Sync', value: pending.length, icon: 'time', color: 'bg-orange-900/50', route: '/(admin)/requests' },
               { label: 'Live Shows', value: active.length, icon: 'flash', color: 'bg-green-900/50', route: '/(admin)/requests' },
             ].map((s, i) => (
@@ -127,7 +127,6 @@ export default function AdminOverview() {
               {[
                 { label: 'Manage Users', icon: 'people-outline', route: '/(admin)/users' },
                 { label: 'All Requests', icon: 'list-outline', route: '/(admin)/requests' },
-                { label: 'Create User', icon: 'person-add-outline', route: '/(admin)/create-user' },
               ].map((a) => (
                 <TouchableOpacity
                   key={a.label}

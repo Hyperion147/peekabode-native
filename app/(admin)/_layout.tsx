@@ -45,15 +45,8 @@ export default function AdminLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="create-user"
-        options={{
-          title: 'Add User',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-add-outline" size={size} color={color} />
-          ),
-        }}
-      />
+      {/* create-user is accessed via dialog on the Users screen, not a tab */}
+      <Tabs.Screen name="create-user" options={{ href: null }} />
     </Tabs>
   );
 }

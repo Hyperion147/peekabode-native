@@ -24,8 +24,8 @@ function AuthGate({ children }: { children: React.ReactNode }) {
       }
     } else {
       const role = profile?.role ?? 'USER';
-      if (inAuth) {
-        // Signed in but on auth screen — redirect to correct area
+      // Signed in on splash or auth screen — redirect to correct dashboard
+      if (segments[0] === undefined || segments[0] === 'index' || inAuth) {
         if (role === 'ADMIN' || role === 'SUPERADMIN') {
           router.replace('/(admin)' as any);
         } else {

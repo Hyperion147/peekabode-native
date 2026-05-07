@@ -2,7 +2,7 @@ import { useCurrentUser } from '@/hooks/useAuth';
 import { useRequests } from '@/hooks/useRequests';
 import type { Request, RequestStatus } from '@/lib/types';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -105,7 +105,8 @@ export default function BookingsScreen() {
   });
 
   return (
-    <SafeAreaView className="flex-1 bg-[#f0f4f3]">
+    <SafeAreaView className="flex-1 bg-[#162820]">
+      <StatusBar style="light" backgroundColor="#162820" />
       {/* Header */}
       <View className="flex-row items-center justify-between px-5 py-3 bg-[#162820] border-b border-[#2a3f38]">
         <Text className="text-white font-bold text-lg">My Bookings</Text>

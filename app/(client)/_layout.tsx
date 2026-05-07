@@ -1,8 +1,13 @@
+import { useCurrentUser } from '@/hooks/useAuth';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { View } from 'react-native';
 
 export default function ClientLayout() {
+  const { profile } = useCurrentUser();
+  const isAdmin =
+    profile?.role === 'ADMIN' || profile?.role === 'SUPERADMIN';
+
   return (
     <Tabs
       screenOptions={{
@@ -23,14 +28,16 @@ export default function ClientLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="new-request/index"
         options={{
           title: 'New Request',
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: () => (
             <View className="w-10 h-10 rounded-full bg-[#c9a96e] items-center justify-center -mt-4">
               <Ionicons name="add" size={26} color="#fff" />
             </View>
@@ -61,6 +68,17 @@ export default function ClientLayout() {
           title: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-circle-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      {/* Admin tab — only visible for ADMIN / SUPERADMIN roles */}
+      <Tabs.Screen
+        name="admin-panel"
+        options={{
+          title: 'Admin',
+          href: isAdmin ? undefined : null,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="shield-checkmark-outline" size={size} color={color} />
           ),
         }}
       />

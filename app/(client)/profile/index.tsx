@@ -2,6 +2,7 @@ import { useCurrentUser, useSignOut } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import {
     ActivityIndicator,
@@ -95,7 +96,8 @@ export default function ProfileScreen() {
   const isAdmin = profile?.role === 'ADMIN' || profile?.role === 'SUPERADMIN';
 
   return (
-    <SafeAreaView className="flex-1 bg-[#f0f4f3]">
+    <SafeAreaView className="flex-1 bg-[#162820]">
+      <StatusBar style="light" backgroundColor="#162820" />
       {/* Header */}
       <View className="px-5 py-3 bg-[#162820] border-b border-[#2a3f38]">
         <Text className="text-white font-bold text-lg">My Profile</Text>
